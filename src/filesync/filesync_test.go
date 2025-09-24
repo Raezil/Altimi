@@ -1,6 +1,7 @@
 package filesync
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"testing"
@@ -114,8 +115,9 @@ func benchmarkFileSync(b *testing.B, n int) {
 
 	// prepare files
 	for i := 0; i < n; i++ {
-		name := filepath.Join(src, "f", filepath.Base(filepath.Join("file", string(rune(i%10))))+time.Now().String())
-		writeTestFile(b, filepath.Join(src, name), "content", time.Now())
+		// safe, unique file names: file0.txt, file1.txt, ...
+		name := filepath.Join(src, "f", fmt.Sprintf("file%d.txt", i))
+		writeTestFile(b, name, "content", time.Now())
 	}
 
 	fs := NewFileSync(src, dst, false)
