@@ -25,3 +25,16 @@ With deletion enabled:
 ```bash
 go run main.go --delete-missing ./examples/source ./examples/target
 ```
+
+## Tests
+```bash
+cd src/filesync
+```
+If you want to run tests, run:
+```bash
+go test
+```
+if you want to run benchmarks, run:
+```bash
+go test --bench=.
+```
